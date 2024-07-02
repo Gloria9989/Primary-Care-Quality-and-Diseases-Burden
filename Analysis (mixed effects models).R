@@ -1,6 +1,6 @@
 ## Title: The Association between Primary Care Quality and Diseases Burden
 ## DATA SETS: OECD Statistics (hospital rate of NCD),  Global Burden of Disease (DALYs)
-## Methods: GEE, fixed effects model, random effects model, sensitivity analysis
+## Methods: GEE, fixed effects model, random effects model, mixed effects model, （sensitivity analysis)
 ## PROGRAMMER: Gloria Xiang 
 ## Date: July 20, 2022 (last modified)
 
@@ -22,7 +22,7 @@ asthma <- read_csv("~/Desktop/asthma_all.CSV", col_types = cols(quality = col_nu
                  poverty = col_number(),obese = col_number(), smoking = col_number(), alcohol = col_number()))
 
 
-## hospital admission group by yearly average (high/low)
+## hospital admission group by yearly average (high 1/low 0)
 #asthma
 q_media<-asthma %>% 
   group_by(year) %>% 
@@ -119,7 +119,7 @@ cbind(quality2017,distribution)
 which(distribution==1)
 
 
-## disease burden group by yearly average (high/low)
+## disease burden group by yearly average (high 1/low 0)
 #asthma
 df_mean<-asthma %>% 
   group_by(year) %>% 
